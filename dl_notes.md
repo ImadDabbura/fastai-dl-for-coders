@@ -30,6 +30,28 @@
     - Next fit again using lr from above.
     - Then unfreeze and use lr_finder again.
     - Refit using lr from above.
+- If images are two channels, we can add one channel to make it 3 channels so that we can use image-netpretrained models. The third channel would be either all zeros or the average of the first two channels.
+- A language model is a model that predicts the next word in a sentence give previois words.
+- Using pre-trained language model on something like wiki-text and then fine-tune it one the dataset we have will boost the performance of any NLP task because the language model will adapt specifically to the new dataset and won't be as generic as before.
+- Language model will be initially trained on what is called self-supervised learning because the labels will be within the data itself, i.e predicting the next word given the all previous words.
+- We usually are not interested in the langiage model itself because it will be used for downstream tasks such as text classification. Therefore, we don't really pay attention to its accuracy as long as it is above 30% we will be happy.
+- We can use both training and test datasets when training/fine-tune a language model as long as we are not using the lables from test set. That way we get access to more data than just training data.
+- Using NN for tabular data may well outperform traditional shallow ML approaches and requires a lot less feature engineering.
+- The way NN is applied to tabular data is as follows:
+  - Categorical features will go through embedding layers first. Each feature will have its own embedding layer.
+  - Next, concatenate the output of embedding layers for all categorical features with the continuous features so that each row would 1 x n.
+  - Feed the concatenated data through hidden layers and then output layer.
+- Collaborative filtering is just solving linear regression using gradient descent by using users' features and movies' features in the case of movie recommendation systems.
+- Fine tuning in fastai is done as follows:
+  - If `max_lr` is one number --> all layers wull have same lr.
+  - If `max_lr` is `slice(number)` --> last group of layers would have lr=number and the other group would have lr=number/3.
+  - If `max_lr` is `slice(min, max)` --> first group lr=min, last group=max, and the middle groups would be something in between min and max.
+- When using transfer learning in computer vision, we always replace the classifer which is the top fully connected layers because those layers are specific to the classes the model was trained on.
+- In fastai, CNNs have 3 groups for layers. Early, middle, and top layers.
+- Use Entity Embeddings to learn categorical features instead of use one hot encoding. This will boost the performance even when doing shallow ML algorithms like RandomForest. So the output of EE will be fed to RF along with other continuous features.
+- TensorDataset in PyTorch creates a dataset in pytorch from arrays so that we can use it in DataLoaders.
+- Using exponential weighted average of the lose helps avoid having noisy loss curve whem plotting it against number of iterations.
+- Using one cycle policy, when we increase lr we decrease momentum and vise versa. So at the beginning of training, the learning rate would be very small and increases until reach a max at the half cycle and then starts decreasing to reach its minimum by the end of the cycle. However, momentum goes in the opposite direction, i.e start high and go to the minimum at the half cycle then goes to max at the end of the cycle.
 
 ---
 
