@@ -67,3 +67,7 @@
 -Accuracy is not a good metric to compare models when we have imbalanced dataset regardless of whether it is an ML or DL algorithm.
 
 ---
+
+## Notes from Leslie Smith interview with Jeremy Howard - Nov. 18th, 2018
+
+- 
